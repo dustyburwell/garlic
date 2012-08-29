@@ -73,6 +73,6 @@ page.SendTiming("category", "variable", 1000 /* time in millis */, "label");
 ### Notable Gotchas
 
 * Each `Session` represents a unique visit and each `Page` represents a page view within that visit.
-* Source will always be (direct) and medium will always be (none)
+* Source will always be `(direct)` and medium will always be `(none)`
 * Browser and OS information is never sent
 * All users are considered "Returning Visitors"
