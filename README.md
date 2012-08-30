@@ -1,7 +1,7 @@
-##GARLIC
+##Garlic
 Google Analytics Reporting Library In C#
 
-Google analytics is a powerful tool for analyzing traffic patterns and conversion on a website. 
+Google Analytics is a powerful tool for analyzing traffic patterns and conversion on a website. 
 With Garlic, it can become a powerful tool for analyzing usage of any application written in
 .Net, be it an MsMVC web application or a WPF desktop application.
 
@@ -28,7 +28,7 @@ session.SetCustomVariable(
 Create a page view request and wire it up to screen activation events
 
 ```csharp
-var page = Session.CreatePageViewRequest(
+var page = session.CreatePageViewRequest(
   "/",          // path
   "Home page"); // page title
 
