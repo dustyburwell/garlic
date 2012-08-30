@@ -118,7 +118,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoogleAnalyticsClient\Garlic.csproj">
+    <ProjectReference Include="..\Garlic\Garlic.csproj">
       <Project>{CC6DCA91-9D5A-4603-B8CA-C9597A9D3107}</Project>
       <Name>Garlic</Name>
     </ProjectReference>

@@ -60,9 +60,9 @@ namespace Garlic
             string utma = String.Format("{0}.{1}.{2}.{3}.{4}.{5}",
                                         DomainHash,
                                         RandomNumber,
-                                        Timestamp,
-                                        Timestamp,
-                                        Timestamp,
+                                        Timestamp, // timestamp of first visit
+                                        Timestamp, // timestamp of previous (most recent visit)
+                                        Timestamp, // timestamp of current visit
                                         2);
 
             //referral informaiton
