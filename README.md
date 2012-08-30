@@ -63,7 +63,9 @@ page.SendTiming("category", "variable", 1000 /* time in millis */, "label");
 
 ### Get Garlic
 
-// todo:
+Garlic is available as a NuGet package and can be installed via the NuGet Package Manager:
+
+    PM> Install-Package Garlic
 
 ### Known Issues
 
