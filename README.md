@@ -60,6 +60,13 @@ or timing data
 ```csharp
 page.SendTiming("category", "variable", 1000 /* time in millis */, "label");
 ```
+start a timing to be submitted later
+
+```csharp
+ITiming timing = page.StartTiming("category", "variable", "label");
+//Suck some blood, eat some rats, whatever fancies you
+timing.Finish(); //Sends the timing information
+```
 
 ### Get Garlic
 

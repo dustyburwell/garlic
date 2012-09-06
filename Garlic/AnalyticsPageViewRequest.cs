@@ -25,6 +25,11 @@
          m_analyticsClient.SubmitEvent(m_page, m_title, category, action, label, value, m_customVariables);
       }
 
+      public ITiming StartTiming(string category, string variable, string label)
+      {
+         return new Timing(this, category, variable, label);
+      }
+
       public void SendTiming(string category, string variable, int time, string label)
       {
          m_analyticsClient.SubmitTiming(m_page, m_title, category, variable, time, label, m_customVariables);
