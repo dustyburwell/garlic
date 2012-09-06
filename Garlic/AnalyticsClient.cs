@@ -94,7 +94,7 @@ namespace Garlic
          if (variables.Any())
             client.QueryString["utme"] = variables.ToUtme();
 
-         client.DownloadData("__utm.gif");
+         client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
       }
 
       public void SubmitEvent(string page, string title, string category, string action, string label, string value, CustomVariableBag pageVariables)
@@ -109,7 +109,7 @@ namespace Garlic
          if (variables.Any())
             client.QueryString["utme"] += variables.ToUtme();
 
-         client.DownloadData("__utm.gif");
+         client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
       }
 
       public void SubmitTiming(string page, string title, string category, string action, int time, string label, CustomVariableBag pageVariables)
@@ -124,7 +124,7 @@ namespace Garlic
          if (variables.Any())
             client.QueryString["utme"] += variables.ToUtme();
 
-         client.DownloadData("__utm.gif");
+         client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
       }
 
       private static string FormatTimingUtme(string category, string variable, int time, string label)
