@@ -132,7 +132,7 @@ namespace Garlic
          var builder = new StringBuilder();
 
          builder.Append("14(90!");
-         builder.AppendFormat("{0}*{1}*{2}", category, variable, time);
+         builder.AppendFormat("{1}*{0}*{2}", category, variable, time);
 
          if (!string.IsNullOrEmpty(label))
             builder.AppendFormat("*{0}", label);
