@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Threading;
 using Caliburn.Micro;
 
 namespace Garlic.Sample.WPF
@@ -23,6 +24,7 @@ namespace Garlic.Sample.WPF
          Items.Add(new OneViewModel(Session));
          Items.Add(new TwoViewModel(Session));
          Items.Add(new ThreeViewModel(Session));
+         Items.Add(new FourViewModel(Session));
       }
    }
 
@@ -47,6 +49,30 @@ namespace Garlic.Sample.WPF
       private static void ScreenActivated(AnalyticsPageViewRequest request)
       {
          request.Send();
+      }
+   }
+
+   public class FourViewModel : Screen
+   {
+      private readonly AnalyticsPageViewRequest m_page;
+
+      public FourViewModel(AnalyticsSession analytics)
+      {
+         m_page = analytics.CreatePageViewRequest("/four", "");
+         m_page.Track(this);
+      }
+
+      public override string DisplayName
+      {
+         get { return "four"; }
+         set { }
+      }
+
+      public void DoThing()
+      {
+         var timing = m_page.StartTiming("Do", "Thing", "");
+         Thread.Sleep(10);
+         timing.Finish();
       }
    }
 
