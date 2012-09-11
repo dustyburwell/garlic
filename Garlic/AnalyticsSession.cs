@@ -18,5 +18,11 @@
       {
          m_analyticsClient.SetCustomVariable(position, key, value);
       }
+
+      public string UserAgent
+      {
+         get { return m_analyticsClient.UserAgent; }
+         set { m_analyticsClient.UserAgent = value; }
+      }
    }
 }
