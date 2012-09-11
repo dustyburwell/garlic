@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Garlic
 {
-   internal class AnalyticsClient
+   internal class AnalyticsClient : IAnalyticsClient
    {
       private readonly CustomVariableBag m_sessionVariables;
       private string m_userAgent;

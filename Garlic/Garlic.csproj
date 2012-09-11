@@ -45,6 +45,9 @@
     <Compile Include="AnalyticsSession.cs" />
     <Compile Include="AnalyticsPageViewRequest.cs" />
     <Compile Include="CustomVariableBag.cs" />
+    <Compile Include="IAnalyticsClient.cs" />
+    <Compile Include="IAnalyticsPageViewRequest.cs" />
+    <Compile Include="IAnalyticsSession.cs" />
     <Compile Include="ITiming.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timing.cs" />
