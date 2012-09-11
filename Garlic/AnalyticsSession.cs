@@ -1,6 +1,6 @@
 ﻿namespace Garlic
 {
-   public class AnalyticsSession
+   public class AnalyticsSession : IAnalyticsSession
    {
       private readonly AnalyticsClient m_analyticsClient; 
 
@@ -9,7 +9,7 @@
          m_analyticsClient = new AnalyticsClient(domain, trackingCode);
       }
 
-      public AnalyticsPageViewRequest CreatePageViewRequest(string page, string title)
+      public IAnalyticsPageViewRequest CreatePageViewRequest(string page, string title)
       {
          return new AnalyticsPageViewRequest(m_analyticsClient, page, title);
       }
@@ -21,8 +21,14 @@
 
       public string UserAgent
       {
-         get { return m_analyticsClient.UserAgent; }
-         set { m_analyticsClient.UserAgent = value; }
+         get
+         {
+            return m_analyticsClient.UserAgent;
+         }
+         set
+         {
+            m_analyticsClient.UserAgent = value;
+         }
       }
    }
 }
