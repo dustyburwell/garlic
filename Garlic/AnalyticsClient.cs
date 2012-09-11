@@ -8,6 +8,7 @@ namespace Garlic
    internal class AnalyticsClient
    {
       private readonly CustomVariableBag m_sessionVariables;
+      private string m_userAgent;
 
       public AnalyticsClient(string domain, string trackingCode)
       {
@@ -24,13 +25,28 @@ namespace Garlic
       public string Domain { get; set; }
       public string TrackingCode { get; set; }
       public string Timestamp { get; set; }
-      public string UserAgent { get; set; }
-      
       public string ReferralSource = "(direct)";
       public string Medium = "(none)";
       public string Campaign = "(direct)";
       public string RandomNumber { get; set; }
 
+      public string UserAgent
+      {
+         get
+         {
+            return m_userAgent;
+         }
+         set
+         {
+            if (string.IsNullOrEmpty(value))
+            {
+               throw new ArgumentException("UserAgent cannot be null or empty.");
+            }
+            
+            m_userAgent = value;
+         }
+      }
+      
       public int DomainHash
       {
          get
@@ -155,7 +171,7 @@ namespace Garlic
       {
          Random randomNumber = new Random();
          WebClient client = new WebClient();
-         client.Headers.Add(HttpRequestHeader.UserAgent, UserAgent ?? "Garlic");
+         client.Headers.Add(HttpRequestHeader.UserAgent, UserAgent);
          client.BaseAddress = "http://www.google-analytics.com/";
          
          client.QueryString["utmhn"] = Domain;
