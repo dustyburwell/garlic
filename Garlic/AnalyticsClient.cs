@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Reflection;
 using System.Text;
 
 namespace Garlic
@@ -7,6 +8,7 @@ namespace Garlic
    internal class AnalyticsClient
    {
       private readonly CustomVariableBag m_sessionVariables;
+      private string m_userAgent;
 
       public AnalyticsClient(string domain, string trackingCode)
       {
@@ -17,6 +19,7 @@ namespace Garlic
          Domain = domain;
          RandomNumber = randomNumber.Next(1000000000).ToString();
          TrackingCode = trackingCode;
+         UserAgent = GetDefaultUserAgent();
       }
 
       public string Domain { get; set; }
@@ -27,6 +30,18 @@ namespace Garlic
       public string Campaign = "(direct)";
       public string RandomNumber { get; set; }
 
+      public string UserAgent
+      {
+         get
+         {
+            return m_userAgent;
+         }
+         set 
+         {
+            m_userAgent = string.IsNullOrEmpty(value) ? GetDefaultUserAgent() : value;
+         }
+      }
+      
       public int DomainHash
       {
          get
@@ -127,6 +142,12 @@ namespace Garlic
          client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
       }
 
+      private static string GetDefaultUserAgent()
+      {
+         var version = Assembly.GetExecutingAssembly().GetName().Version;
+         return string.Format("Garlic v{0}.{1}", version.Major, version.Minor);
+      }
+
       private static string FormatTimingUtme(string category, string variable, int time, string label)
       {
          var builder = new StringBuilder();
@@ -145,8 +166,9 @@ namespace Garlic
       {
          Random randomNumber = new Random();
          WebClient client = new WebClient();
+         client.Headers.Add(HttpRequestHeader.UserAgent, UserAgent);
          client.BaseAddress = "http://www.google-analytics.com/";
-
+         
          client.QueryString["utmhn"] = Domain;
          client.QueryString["utmcs"] = "UTF-8";
          client.QueryString["utmsr"] = "1280x800";
