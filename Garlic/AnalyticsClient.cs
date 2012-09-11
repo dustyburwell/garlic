@@ -36,14 +36,9 @@ namespace Garlic
          {
             return m_userAgent;
          }
-         set
+         set 
          {
-            if (string.IsNullOrEmpty(value))
-            {
-               throw new ArgumentException("UserAgent cannot be null or empty.");
-            }
-            
-            m_userAgent = value;
+            m_userAgent = string.IsNullOrEmpty(value) ? GetDefaultUserAgent() : value;
          }
       }
       
