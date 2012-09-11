@@ -1,13 +1,13 @@
 ﻿namespace Garlic
 {
-   public class AnalyticsPageViewRequest
+   public class AnalyticsPageViewRequest : IAnalyticsPageViewRequest
    {
-      private readonly AnalyticsClient m_analyticsClient;
+      private readonly IAnalyticsClient m_analyticsClient;
       private readonly string m_page;
       private readonly string m_title;
       private readonly CustomVariableBag m_customVariables;
 
-      internal AnalyticsPageViewRequest(AnalyticsClient analyticsClient, string page, string title)
+      internal AnalyticsPageViewRequest(IAnalyticsClient analyticsClient, string page, string title)
       {
          m_analyticsClient = analyticsClient;
          m_page = page;

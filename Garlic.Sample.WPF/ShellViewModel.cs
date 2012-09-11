@@ -33,20 +33,20 @@ namespace Garlic.Sample.WPF
       private static readonly IDictionary<Screen, EventHandler<ActivationEventArgs>> m_screens =
          new Dictionary<Screen, EventHandler<ActivationEventArgs>>();
 
-      public static void Track(this AnalyticsPageViewRequest request, Screen screen)
+      public static void Track(this IAnalyticsPageViewRequest request, Screen screen)
       {
          EventHandler<ActivationEventArgs> activated = (s, e) => ScreenActivated(request);
          m_screens.Add(screen, activated);
          screen.Activated += activated;
       }
 
-      public static void Untrack(this AnalyticsPageViewRequest request, Screen screen)
+      public static void Untrack(this IAnalyticsPageViewRequest request, Screen screen)
       {
          screen.Activated -= m_screens[screen];
          m_screens.Remove(screen);
       }
 
-      private static void ScreenActivated(AnalyticsPageViewRequest request)
+      private static void ScreenActivated(IAnalyticsPageViewRequest request)
       {
          request.Send();
       }
@@ -54,7 +54,7 @@ namespace Garlic.Sample.WPF
 
    public class FourViewModel : Screen
    {
-      private readonly AnalyticsPageViewRequest m_page;
+      private readonly IAnalyticsPageViewRequest m_page;
 
       public FourViewModel(AnalyticsSession analytics)
       {
@@ -93,7 +93,7 @@ namespace Garlic.Sample.WPF
 
    public class TwoViewModel : Screen
    {
-      private readonly AnalyticsPageViewRequest m_page;
+      private readonly IAnalyticsPageViewRequest m_page;
 
       public TwoViewModel(AnalyticsSession analytics)
       {
@@ -115,7 +115,7 @@ namespace Garlic.Sample.WPF
 
    public class OneViewModel : Screen
    {
-      private readonly AnalyticsPageViewRequest m_page; 
+      private readonly IAnalyticsPageViewRequest m_page; 
 
       public OneViewModel(AnalyticsSession analytics)
       {
