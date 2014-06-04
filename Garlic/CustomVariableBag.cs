@@ -50,10 +50,10 @@ namespace Garlic
 
       public string ToUtme()
       {
-         return "8(" + 
-                string.Join("*", m_variables.Where(v => v != null).Select(kvp => kvp.Value.Key).ToArray()) +
+         return "8(" +
+                string.Join("*", m_variables.Where(v => v != null).Select(kvp => AnalyticsClient.EncodeUtmePart(kvp.Value.Key)).ToArray()) +
                 ")9(" +
-                string.Join("*", m_variables.Where(v => v != null).Select(kvp => kvp.Value.Value).ToArray()) +
+                string.Join("*", m_variables.Where(v => v != null).Select(kvp => AnalyticsClient.EncodeUtmePart(kvp.Value.Value)).ToArray()) +
                 ")11(" +
                 string.Join("*", m_variables.Where(v => v != null).Select(kvp => "1").ToArray());
       }
