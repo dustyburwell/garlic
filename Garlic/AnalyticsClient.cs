@@ -160,10 +160,10 @@ namespace Garlic
          var builder = new StringBuilder();
 
          builder.Append("14(90!");
-         builder.AppendFormat("{1}*{0}*{2}", category, variable, time);
+         builder.AppendFormat("{1}*{0}*{2}", EncodeUtmePart(category), EncodeUtmePart(variable), time);
 
          if (!string.IsNullOrEmpty(label))
-            builder.AppendFormat("*{0}", label);
+            builder.AppendFormat("*{0}", EncodeUtmePart(label));
 
          builder.AppendFormat(")(90!{0})", time);
          return builder.ToString();
@@ -197,17 +197,22 @@ namespace Garlic
       private static string FormatUtme(string category, string action, string label, string value)
       {
          StringBuilder builder = new StringBuilder();
-         builder.AppendFormat("5({0}*{1}", category, action);
+         builder.AppendFormat("5({0}*{1}", EncodeUtmePart(category), EncodeUtmePart(action));
 
          if (!string.IsNullOrEmpty(label))
-            builder.AppendFormat("*{0}", label);
+            builder.AppendFormat("*{0}", EncodeUtmePart(label));
 
          builder.Append(")");
          
          if (!string.IsNullOrEmpty(value))
-            builder.AppendFormat("({0})", value);
+            builder.AppendFormat("({0})", EncodeUtmePart(value));
 
          return builder.ToString();
+      }
+
+      internal static string EncodeUtmePart(string part)
+      {
+         return part.Replace("'", "'0").Replace(")", "'1").Replace("*", "'2");
       }
 
       private static int ConvertToUnixTimestamp(DateTime value)
